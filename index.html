@@ -1499,23 +1499,23 @@
         <div class="section-container">
             <div class="numbers-grid">
                 <div class="number-item">
-                    <span class="number-value">54<span>+</span></span>
+                    <span class="number-value" data-value="54" data-suffix="+">54+</span>
                     <p class="number-label">Anos de história</p>
                 </div>
                 <div class="number-item">
-                    <span class="number-value">26<span>mil</span></span>
+                    <span class="number-value" data-value="26" data-suffix=" mil">26 mil</span>
                     <p class="number-label">Alunos</p>
                 </div>
                 <div class="number-item">
-                    <span class="number-value">150.000<span>+</span></span>
+                    <span class="number-value" data-value="150" data-suffix=" mil">150 mil</span>
                     <p class="number-label">Livros na biblioteca</p>
                 </div>
                 <div class="number-item">
-                    <span class="number-value">250</span>
+                    <span class="number-value" data-value="250" data-suffix="">250</span>
                     <p class="number-label">Salas de aula</p>
                 </div>
                 <div class="number-item">
-                    <span class="number-value">16</span>
+                    <span class="number-value" data-value="16" data-suffix="">16</span>
                     <p class="number-label">Polos EAD</p>
                 </div>
             </div>
@@ -1629,7 +1629,7 @@
             threshold: 0.5
         };
 
-        const animateValue = (element, start, end, duration) => {
+        const animateValue = (element, start, end, duration, suffix) => {
             const range = end - start;
             const increment = range / (duration / 16);
             let current = start;
@@ -1637,10 +1637,10 @@
             const timer = setInterval(() => {
                 current += increment;
                 if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
-                    element.textContent = end;
+                    element.innerHTML = end + '<span>' + suffix + '</span>';
                     clearInterval(timer);
                 } else {
-                    element.textContent = Math.floor(current);
+                    element.innerHTML = Math.floor(current) + '<span>' + suffix + '</span>';
                 }
             }, 16);
         };
@@ -1650,10 +1650,11 @@
                 if (entry.isIntersecting) {
                     const numberElements = entry.target.querySelectorAll('.number-value');
                     numberElements.forEach(el => {
-                        const finalValue = parseInt(el.textContent);
+                        const finalValue = parseInt(el.dataset.value);
+                        const suffix = el.dataset.suffix || '';
                         if (!isNaN(finalValue) && !el.dataset.animated) {
                             el.dataset.animated = true;
-                            animateValue(el, 0, finalValue, 2000);
+                            animateValue(el, 0, finalValue, 2000, suffix);
                         }
                     });
                 }
