@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNISUAM - Centro Universitário Augusto Motta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a365d;
+            --primary-light: #2c5282;
+            --secondary: #ed8936;
+            --accent: #38a169;
+            --dark: #1a202c;
+            --light: #f7fafc;
+            --gray: #718096;
+            --gradient: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.7;
+            background: var(--light);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255,255,255,0.98);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--gray);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--gradient);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(26,54,93,0.3);
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hero-shapes .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .hero-shapes .shape-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero-shapes .shape-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 100px;
+            left: -150px;
+        }
+
+        .hero-shapes .shape-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            right: 20%;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 span {
+            color: var(--secondary);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            color: white;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-badge i {
+            color: var(--secondary);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #dd6b20;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(237,137,54,0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light);
+            border-radius: 16px;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+        }
+
+        .stat-number span {
+            color: var(--secondary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        .hero-floating {
+            position: absolute;
+            background: white;
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-floating-1 {
+            top: -20px;
+            left: -40px;
+        }
+
+        .hero-floating-2 {
+            bottom: -20px;
+            right: -40px;
+            animation-delay: 1.5s;
+        }
+
+        .floating-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .floating-text strong {
+            display: block;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .floating-text span {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(26,54,93,0.1);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-main {
+            width: 100%;
+            height: 500px;
+            background: var(--gradient);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.2"/><circle cx="100" cy="100" r="60" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.2"/><circle cx="100" cy="100" r="40" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.2"/></svg>');
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: -30px;
+            right: 30px;
+            background: var(--secondary);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .about-badge strong {
+            display: block;
+            font-size: 2.5rem;
+        }
+
+        .about-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 12px;
+        }
+
+        .about-feature i {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: var(--light);
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            max-width: 400px;
+            margin-right: 40px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: 0;
+            margin-left: 40px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            right: calc(50% - 15px);
+            width: 30px;
+            height: 30px;
+            background: var(--secondary);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            right: auto;
+            left: calc(50% - 15px);
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Courses Section */
+        .courses {
+            background: white;
+        }
+
+        .courses-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active,
+        .tab-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card {
+            background: var(--light);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-card h4 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .course-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-tag {
+            display: inline-block;
+            background: rgba(26,54,93,0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Nucleos Section */
+        .nucleos {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .nucleos .section-badge {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .nucleos .section-header h2 {
+            color: white;
+        }
+
+        .nucleos .section-header p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .nucleos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .nucleo-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+
+        .nucleo-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+
+        .nucleo-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--secondary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nucleo-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .nucleo-card p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Units Section */
+        .units {
+            background: var(--light);
+        }
+
+        .units-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .unit-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .unit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .unit-image {
+            height: 200px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .unit-content {
+            padding: 1.5rem;
+        }
+
+        .unit-content h4 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .unit-content p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .unit-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .unit-feature {
+            background: var(--light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        /* Numbers Section */
+        .numbers {
+            background: white;
+            padding: 4rem 2rem;
+        }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .number-item {
+            padding: 2rem;
+        }
+
+        .number-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            line-height: 1;
+        }
+
+        .number-value span {
+            color: var(--secondary);
+        }
+
+        .number-label {
+            color: var(--gray);
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--secondary);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta .btn-primary {
+            background: white;
+            color: var(--secondary);
+        }
+
+        .cta .btn-primary:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .logo-text {
+            color: white;
+        }
+
+        .footer-brand .logo-text span {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            margin-top: 1rem;
+            max-width: 300px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-column h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1200px) {
+            .units-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .numbers-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-badges, .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-visual {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .hero-floating {
+                display: none;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .timeline-container::before {
+                left: 20px;
+            }
+            
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+            
+            .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 5px;
+                right: auto;
+            }
+            
+            .units-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .numbers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .courses-grid, .nucleos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .number-value {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="logo-text">
+                    UNISUAM
+                    <span>Centro Universitário Augusto Motta</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#historia">História</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#nucleos">Núcleos</a></li>
+                <li><a href="#unidades">Unidades</a></li>
+                <li><a href="#inscricao" class="nav-cta">Inscreva-se</a></li>
+            </ul>
+            <button class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badges">
+                    <span class="hero-badge"><i class="fas fa-trophy"></i> Primeiro Centro Universitário do Brasil</span>
+                    <span class="hero-badge"><i class="fas fa-star"></i> Desde 1969</span>
+                </div>
+                <h1>Transforme seu <span>futuro</span> com educação de qualidade</h1>
+                <p>Mais de 50 anos formando profissionais de excelência no Rio de Janeiro. Uma instituição que une tradição, inovação e compromisso social.</p>
+                <div class="hero-buttons">
+                    <a href="#inscricao" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Quero me inscrever
+                    </a>
+                    <a href="#cursos" class="btn btn-secondary">
+                        <i class="fas fa-book"></i> Ver cursos
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-floating hero-floating-1">
+                    <div class="floating-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="floating-text">
+                        <strong>26.000+</strong>
+                        <span>Alunos matriculados</span>
+                    </div>
+                </div>
+                <div class="hero-card">
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">35<span>+</span></span>
+                            <p class="stat-label">Cursos de Graduação</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50<span>+</span></span>
+                            <p class="stat-label">Pós-Graduação</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4</span>
+                            <p class="stat-label">Unidades Presenciais</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">16</span>
+                            <p class="stat-label">Polos EAD</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-floating hero-floating-2">
+                    <div class="floating-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="floating-text">
+                        <strong>150.000+</strong>
+                        <span>Obras na biblioteca</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="sobre">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <div class="about-image-main">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="about-badge">
+                        <strong>54+</strong>
+                        anos de história
+                    </div>
+                </div>
+                <div class="about-content">
+                    <span class="section-badge">Sobre a UNISUAM</span>
+                    <h3>Uma história de transformação através da educação</h3>
+                    <p>O Centro Universitário Augusto Motta (UNISUAM) é uma tradicional instituição de Ensino Superior fundada em 1969 e situada no Rio de Janeiro, com sede no bairro de Bonsucesso.</p>
+                    <p>Principal instituição de ensino superior da região da Leopoldina, a UNISUAM oferece 250 salas de aula, modernos laboratórios e biblioteca com mais de 150.000 obras. O corpo docente é formado por professores especialistas, mestres e doutores.</p>
+                    <p>Em 1997, a UNISUAM se tornou o <strong>primeiro Centro Universitário do Brasil</strong>, um marco histórico que reflete nosso compromisso com a excelência acadêmica.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Reconhecido pelo MEC</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Corpo docente qualificado</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Infraestrutura moderna</span>
+                        </div>
+                        <div class="about-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Parcerias internacionais</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline" id="historia">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Nossa História</span>
+                <h2>Uma trajetória de conquistas</h2>
+                <p>Desde a década de 1930, a família Motta dedica-se à educação com paixão e compromisso</p>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">Década de 1930</span>
+                        <h4>Colégio Luso Carioca</h4>
+                        <p>Professor Augusto Medeiros da Motta funda o Colégio Luso Carioca, inicialmente um curso preparatório para a Escola Naval.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">1968</span>
+                        <h4>Escola Normal Luso Carioca</h4>
+                        <p>Professora Amarina Motta e seus filhos Augusta e Arapuan dão continuidade ao trabalho, fundando a Escola Normal.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">1969</span>
+                        <h4>Fundação da SUAM</h4>
+                        <p>Em 4 de dezembro, é fundada oficialmente a Sociedade Unificada de Ensino Superior Augusto Motta em Bonsucesso.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">1970</span>
+                        <h4>Primeira Faculdade</h4>
+                        <p>A SUAM tem sua primeira faculdade autorizada a funcionar: Faculdade de Ciências Contábeis e Administrativas.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">1997</span>
+                        <h4>Marco Histórico</h4>
+                        <p>A UNISUAM torna-se o <strong>primeiro Centro Universitário do Brasil</strong>, um reconhecimento da qualidade acadêmica.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">2020</span>
+                        <h4>Doutorado Profissional</h4>
+                        <p>Aprovação do curso de Doutorado Profissional em Desenvolvimento Local, consolidando a pós-graduação stricto sensu.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="timeline-year">Hoje</span>
+                        <h4>Referência em Educação</h4>
+                        <p>Mais de 26.000 alunos, 4 unidades, 16 polos EAD e uma tradição de mais de 54 anos transformando vidas.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="cursos">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Nossos Cursos</span>
+                <h2>Formação completa para seu futuro</h2>
+                <p>Cursos de graduação, pós-graduação, mestrado e doutorado nas áreas de exatas, saúde e humanas</p>
+            </div>
+            <div class="courses-tabs">
+                <button class="tab-btn active">Saúde</button>
+                <button class="tab-btn">Engenharias</button>
+                <button class="tab-btn">Humanas</button>
+                <button class="tab-btn">Comunicação</button>
+                <button class="tab-btn">Tecnologia</button>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Enfermagem</h4>
+                    <p>Formação completa para cuidar da saúde e bem-estar das pessoas com humanização e técnica.</p>
+                    <span class="course-tag">Bacharelado</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-pills"></i></div>
+                    <h4>Farmácia</h4>
+                    <p>Prepare-se para atuar em pesquisa, indústria e atenção farmacêutica.</p>
+                    <span class="course-tag">Bacharelado</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-user-md"></i></div>
+                    <h4>Fisioterapia</h4>
+                    <p>Reabilitação e qualidade de vida através do movimento e técnicas terapêuticas.</p>
+                    <span class="course-tag">Bacharelado</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-brain"></i></div>
+                    <h4>Psicologia</h4>
+                    <p>Compreenda o comportamento humano e promova saúde mental.</p>
+                    <span class="course-tag">Bacharelado</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-apple-alt"></i></div>
+                    <h4>Nutrição</h4>
+                    <p>Alimente o mundo com conhecimento sobre saúde e alimentação.</p>
+                    <span class="course-tag">Bacharelado</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-paw"></i></div>
+                    <h4>Medicina Veterinária</h4>
+                    <p>Cuide da saúde animal com formação técnica e humanizada.</p>
+                    <span class="course-tag">Bacharelado</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-dumbbell"></i></div>
+                    <h4>Educação Física</h4>
+                    <p>Promova saúde e qualidade de vida através da atividade física.</p>
+                    <span class="course-tag">Bacharelado/Licenciatura</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-dna"></i></div>
+                    <h4>Ciências Biológicas</h4>
+                    <p>Explore os mistérios da vida e contribua para a ciência.</p>
+                    <span class="course-tag">Bacharelado/Licenciatura</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Núcleos Section -->
+    <section class="nucleos" id="nucleos">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Diferenciais</span>
+                <h2>Núcleos de Excelência</h2>
+                <p>Espaços especializados que conectam teoria à prática e atendem a comunidade</p>
+            </div>
+            <div class="nucleos-grid">
+                <div class="nucleo-card">
+                    <div class="nucleo-icon"><i class="fas fa-hospital"></i></div>
+                    <h4>CLESAM - Clínica Escola Amarina Motta</h4>
+                    <p>Treinamento prático dos alunos de saúde com atendimento supervisionado à comunidade carente da Zona da Leopoldina. Oferece prevenção, tratamento e reabilitação.</p>
+                </div>
+                <div class="nucleo-card">
+                    <div class="nucleo-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h4>NPJ - Núcleo de Prática Jurídica</h4>
+                    <p>Alunos de Direito e Serviço Social atendem pessoas carentes nas áreas de Direito Civil, Família, Trabalho e Previdenciário, orientados por advogados e professores.</p>
+                </div>
+                <div class="nucleo-card">
+                    <div class="nucleo-icon"><i class="fas fa-video"></i></div>
+                    <h4>Núcleo Hans Donner</h4>
+                    <p>Estúdios de TV e fotografia, ilhas de edição, agência de publicidade e redação de jornalismo para cursos de Comunicação Social e Marketing.</p>
+                </div>
+                <div class="nucleo-card">
+                    <div class="nucleo-icon"><i class="fas fa-user-friends"></i></div>
+                    <h4>UNATI - Universidade Aberta à Terceira Idade</h4>
+                    <p>Mais de 16 mil atendimentos com fisioterapia, informática, nutrição e atividades que melhoram a qualidade de vida dos idosos.</p>
+                </div>
+                <div class="nucleo-card">
+                    <div class="nucleo-icon"><i class="fas fa-cogs"></i></div>
+                    <h4>Espaço Maker - Fab Lab</h4>
+                    <p>Oficina colaborativa de criação, prototipagem e fabricação digital. Aberto à comunidade acadêmica, parceiros e moradores do entorno.</p>
+                </div>
+                <div class="nucleo-card">
+                    <div class="nucleo-icon"><i class="fas fa-comments"></i></div>
+                    <h4>SPA - Serviço de Psicologia Aplicada</h4>
+                    <p>Referência em atendimento psicológico para a Zona da Leopoldina, com atuação em hospitais, comunidades e instituições jurídicas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Units Section -->
+    <section class="units" id="unidades">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">Onde Estamos</span>
+                <h2>Nossas Unidades</h2>
+                <p>Presença física em locais estratégicos do Rio de Janeiro e polos EAD em 10 cidades</p>
+            </div>
+            <div class="units-grid">
+                <div class="unit-card">
+                    <div class="unit-image">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="unit-content">
+                        <h4>Bonsucesso</h4>
+                        <p>Sede principal na Zona da Leopoldina, com infraestrutura completa e todos os cursos.</p>
+                        <div class="unit-features">
+                            <span class="unit-feature">Sede</span>
+                            <span class="unit-feature">Biblioteca</span>
+                            <span class="unit-feature">Labs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="unit-card">
+                    <div class="unit-image">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="unit-content">
+                        <h4>Campo Grande</h4>
+                        <p>Unidade na Zona Oeste atendendo a demanda da região com cursos diversificados.</p>
+                        <div class="unit-features">
+                            <span class="unit-feature">Graduação</span>
+                            <span class="unit-feature">Pós</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="unit-card">
+                    <div class="unit-image">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <div class="unit-content">
+                        <h4>Bangu</h4>
+                        <p>Expandindo o acesso à educação de qualidade na Zona Oeste do Rio.</p>
+                        <div class="unit-features">
+                            <span class="unit-feature">Graduação</span>
+                            <span class="unit-feature">Pós</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="unit-card">
+                    <div class="unit-image">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <div class="unit-content">
+                        <h4>Jacarepaguá</h4>
+                        <p>Unidade estratégica na região de Jacarepaguá com fácil acesso.</p>
+                        <div class="unit-features">
+                            <span class="unit-feature">Graduação</span>
+                            <span class="unit-feature">Pós</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Numbers Section -->
+    <section class="numbers">
+        <div class="section-container">
+            <div class="numbers-grid">
+                <div class="number-item">
+                    <span class="number-value">54<span>+</span></span>
+                    <p class="number-label">Anos de história</p>
+                </div>
+                <div class="number-item">
+                    <span class="number-value">26<span>mil</span></span>
+                    <p class="number-label">Alunos</p>
+                </div>
+                <div class="number-item">
+                    <span class="number-value">150<span>mil</span></span>
+                    <p class="number-label">Livros na biblioteca</p>
+                </div>
+                <div class="number-item">
+                    <span class="number-value">250</span>
+                    <p class="number-label">Salas de aula</p>
+                </div>
+                <div class="number-item">
+                    <span class="number-value">16</span>
+                    <p class="number-label">Polos EAD</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="inscricao">
+        <div class="section-container">
+            <h2>Pronto para transformar seu futuro?</h2>
+            <p>Inscreva-se agora no vestibular UNISUAM e faça parte de uma história de mais de 50 anos de excelência em educação.</p>
+            <a href="https://inscricao.unisuam.edu.br/graduacao" target="_blank" class="btn btn-primary">
+                <i class="fas fa-edit"></i> Fazer inscrição
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        UNISUAM
+                        <span>Centro Universitário Augusto Motta</span>
+                    </div>
+                </a>
+                <p>Transformando vidas através da educação desde 1969. O primeiro Centro Universitário do Brasil.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Cursos</h4>
+                <ul>
+                    <li><a href="#">Graduação</a></li>
+                    <li><a href="#">Pós-Graduação</a></li>
+                    <li><a href="#">Mestrado</a></li>
+                    <li><a href="#">Doutorado</a></li>
+                    <li><a href="#">EAD</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="#">Sobre a UNISUAM</a></li>
+                    <li><a href="#">História</a></li>
+                    <li><a href="#">Unidades</a></li>
+                    <li><a href="#">Trabalhe Conosco</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contato</h4>
+                <ul>
+                    <li><a href="#">Central de Atendimento</a></li>
+                    <li><a href="#">Ouvidoria</a></li>
+                    <li><a href="#">Dúvidas Frequentes</a></li>
+                    <li><a href="#">Portal do Aluno</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 UNISUAM - Centro Universitário Augusto Motta. Todos os direitos reservados.</p>
+            <p>Site desenvolvido com 🐺 por Lobo</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate numbers on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const animateValue = (element, start, end, duration) => {
+            const range = end - start;
+            const increment = range / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                    element.textContent = end;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        };
+
+        const numberObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numberElements = entry.target.querySelectorAll('.number-value');
+                    numberElements.forEach(el => {
+                        const finalValue = parseInt(el.textContent);
+                        if (!isNaN(finalValue) && !el.dataset.animated) {
+                            el.dataset.animated = true;
+                            animateValue(el, 0, finalValue, 2000);
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        const numbersSection = document.querySelector('.numbers');
+        if (numbersSection) {
+            numberObserver.observe(numbersSection);
+        }
+    </script>
+</body>
+</html>
